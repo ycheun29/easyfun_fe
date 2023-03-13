@@ -95,6 +95,12 @@ h5 {
   color: #BFA3F6;
 }
 
+h6 {
+  font-family: Abril Fatface;
+  font-weight: bold;
+  font-size: 110%;
+}
+
 .button {
   text-align: center;
   margin-bottom: 50px;
@@ -110,6 +116,8 @@ a.btn-primary {
 .btn.btn-primary {
   --bs-btn-bg: #fd7f32;
   --bs-btn-border-color: #fd7f32;
+  --bs-btn-active-bg: #fd7f32;
+  --bs-btn-active-border-color: #fd7f32;
   --bs-btn-hover-bg: #fd7f32;
   --bs-btn-hover-border-color: #fd7f32;
 }
@@ -250,4 +258,26 @@ footer.bg-light.text-center.text-lg-start.rounded {
   grid-gap: 20px;
   align-items: center;
   justify-items: center;
+}
+
+.search{
+  position: relative;
+  box-shadow: 0 0 40px rgba(51, 51, 51, .1); 
+}
+
+.search input{
+  height: 60px;
+  text-indent: 25px;
+  border: 1px solid #d6d4d4;
+}
+
+.fa-solid.fa-magnifying-glass{
+  position: absolute;
+  color: #212529;
+  top: 22px;
+  left: 16px;
+}
+
+.dropdown {
+  text-align: center;
 }
