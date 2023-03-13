@@ -88,6 +88,13 @@ h4 {
   color: #9053f8;
 }
 
+h5 {
+  font-family: Abril Fatface;
+  font-weight: normal;
+  font-size: 120%;
+  color: #BFA3F6;
+}
+
 .button {
   text-align: center;
   margin-bottom: 50px;
@@ -182,7 +189,7 @@ input[type="radio"] {
   margin-right: 50px;
 } 
 
-.text-center img {
+.text-center img, .card img {
   width: 300px;
   height: 300px;
   object-fit: cover; 
@@ -231,4 +238,16 @@ img.card-img-top {
 
 footer.bg-light.text-center.text-lg-start.rounded {
   background-color: #ede0ee !important;
+}
+
+.activityList {
+  padding: 50px 0px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-auto-flow: dense;
+  grid-auto-rows: 550px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  align-items: center;
+  justify-items: center;
 }
