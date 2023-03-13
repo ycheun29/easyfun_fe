@@ -8,10 +8,11 @@ import { AppComponent } from './app.component';
 
 import { IndexModule } from './components/index.module';
 import { ActivityModule } from "./components/activity/activity.module";
+import { UserModule } from './components/user/user.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -19,6 +20,7 @@ import { ActivityModule } from "./components/activity/activity.module";
     IndexModule,
     ActivityModule,
     AppRoutingModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

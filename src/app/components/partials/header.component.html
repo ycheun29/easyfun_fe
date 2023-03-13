@@ -1,8 +1,5 @@
 <head>
-  <link
-    href="//fonts.googleapis.com/css?family=Abril+Fatface"
-    rel="stylesheet"
-  />
+  <link href="//fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet" />
 </head>
 <div class="logobar">
@@ -18,7 +15,7 @@
       <a *ngIf="auth.username == null" class="nav-link" routerLink="/user/login"
         >SIGN UP / LOGIN</a
       > -->
-    <a class="nav-link" routerLink="/user/login">SIGN UP / LOGIN</a>
+    <a class="nav-link" href="" routerLink="/user/login">SIGN UP / LOGIN</a>
   </div>
 </div>
 <div class="logobar">
@@ -30,40 +27,18 @@
   <div class="container-fluid">
     <ul class="navbar-nav">
       <li class="nav-item d-flex align-items-center p-4">
-        <a
-          class="nav-link"
-          [class.active]="title == 'Home'"
-          href="#"
-          routerLink="/"
-          >Home</a
-        >
+        <a class="nav-link" [class.active]="title == 'Home'" href="#" routerLink="/">Home</a>
       </li>
       <li class="nav-item d-flex align-items-center p-4">
-        <a
-          class="nav-link"
-          [class.active]="title == 'Explore Activities'"
-          href="#"
-          routerLink="/activity/list"
-          >Explore Activities</a
-        >
+        <a class="nav-link" [class.active]="title == 'Explore Activities'" href="#" routerLink="/activity/list">Explore
+          Activities</a>
       </li>
       <li class="nav-item d-flex align-items-center p-4">
-        <a
-          class="nav-link"
-          [class.active]="title == 'Create An Activity'"
-          href="#"
-          routerLink="/management/list"
-          >Create An Activity</a
-        >
+        <a class="nav-link" [class.active]="title == 'Create An Activity'" href="#" routerLink="/management/list">Create
+          An Activity</a>
       </li>
       <li class="nav-item d-flex align-items-center p-4">
-        <a
-          class="nav-link"
-          [class.active]="title == 'My Profile'"
-          href="#"
-          routerLink="/user/profile"
-          >My Profile</a
-        >
+        <a class="nav-link" [class.active]="title == 'My Profile'" href="#" routerLink="/user/profile">My Profile</a>
       </li>
     </ul>
   </div>
