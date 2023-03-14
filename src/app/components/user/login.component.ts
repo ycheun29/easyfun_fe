@@ -6,4 +6,7 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
   public title: string = "Login";
+  public username!: string;
+  public password!: string;
+  public message!: string;
 }

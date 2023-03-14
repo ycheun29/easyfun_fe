@@ -1,6 +1,54 @@
+<!-- header -->
 <app-header [title]="title"></app-header>
+
+<!-- Content for the Signup Login page -->
+<div class="banner" style="
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url(assets/banner_user.jpg);
+  ">
+    <h1>{{ title }}</h1>
+</div>
+<br />
 <main>
-    <p>login page</p>
-    <a href="" routerLink="/user/signup" class="btn btn-primary">Sign Up</a>
+    <div class="intro">
+        Sign up an account now to join the community.<br />
+        Have an account yet? <a href="#" routerLink="/user/signup">SIGN UP NOW</a>
+    </div>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <div class="bg-danger mt-2 p-2 text-center text-white" *ngIf="message != null">
+                    {{ message }}
+                </div>
+                <form novalidate #form="ngForm">
+                    <div class=" form-group">
+                        <label for="usernameTextField">Username</label>
+                        <input type="text" class="form-control" id="usernameTextField" placeholder="Enter your username"
+                            name="username" [(ngModel)]="username" />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label for="passwordTextField">Password</label>
+                        <input type="password" class="form-control" id="passwordTextField"
+                            placeholder="Enter your password" name="password" [(ngModel)]="password" required />
+                    </div>
+                    <br />
+                    <br />
+                    <div class="button">
+                        <button class="btn btn-primary" type="submit" value="login">
+                            <i class="fas fa-edit"></i>
+                            Submit
+                        </button>
+                        <a href="#" routerLink="/" class="btn btn-warning">
+                            <i class="fas fa-undo"></i>
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </main>
+<!-- Footer -->
 <app-footer></app-footer>
