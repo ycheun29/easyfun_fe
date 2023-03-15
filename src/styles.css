@@ -25,7 +25,7 @@ body {
 .profile{
   display: flex;
   justify-content: flex-end;
-  font-family: Abhaya Libre;
+  font-family: Abril Fatface;
 }
 
 main {
@@ -176,7 +176,7 @@ tr {
 }
   
 label {
-  font-family: Abhaya Libre;
+  font-family: Abril Fatface;
   font-size: 120%;
   margin-bottom: 5px;
 }
