@@ -1,30 +1,28 @@
 import { Injectable } from "@angular/core";
 import { Activity } from "./activity.model";
+import { Comment } from "./comment.model";
 import { RestDataSource } from "./rest.datasource";
 import { ResponseModel } from "./response.model";
 
 @Injectable()
-export class ActivityRepository {
+export class CommentRepository {
 
-    private tempActivityList: Activity[] = [];
+    private tempCommentList: any[] = [];
     public listReady: boolean = false;
 
     constructor(private dataSource: RestDataSource) {}
 
-    getActivityList(): Activity[] {
-        return this.tempActivityList;
+    getCommentList(item: Activity): Comment[] {
+        return this.tempCommentList.filter(comment => comment.activity == item._id);
     }
 
-    setActivityList(){
+    setCommentList(item: Activity){
         this.listReady = false;
         // Use subscribe to get data when it is ready
-        this.dataSource.getActivityList().subscribe(data => {
-            this.tempActivityList = data;
+        this.dataSource.getCommentList(item).subscribe(data => {
+            this.tempCommentList = data;
             this.listReady = true;
         });
     }
-
-    getActivity(id: string): Activity {
-        return Object.assign({}, this.tempActivityList.find(i => i._id === id)!);          
-    }
+    
 }

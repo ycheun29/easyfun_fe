@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { IndexComponent } from './components/index.component';
 import { ActivityListComponent } from './components/activity/list.component';
+import { DetailsComponent } from './components/activity/details.component';
 import { LoginComponent } from './components/user/login.component';
 import { SignupComponent } from './components/user/signup.component';
 
@@ -10,6 +11,7 @@ import { SignupComponent } from './components/user/signup.component';
   imports: [RouterModule.forRoot([
     { path: "", component: IndexComponent },
     { path: "activity/list", component: ActivityListComponent },
+    { path: "activity/details/:id", component: DetailsComponent },
     { path: "user/login", component: LoginComponent},
     { path: "user/signup", component: SignupComponent},
     { path: "**", redirectTo: "" },

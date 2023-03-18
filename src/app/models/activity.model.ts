@@ -11,6 +11,9 @@ export class Activity {
         public date?: Date,
         public startTime?: Date,
         public endTime?: Date,
+        public owner?: {
+            _id: string
+        }
     ){}
 
 }

@@ -75,12 +75,14 @@
   </div>
   <div class="activityList">
     <div *ngFor="let item of activityList" class="card" style="width: 350px">
-      <img
-        class="card-img-top"
-        src="{{ item.picture }}"
-        alt="Card image"
-        style="width: 100%"
-      />
+      <a href="#" [routerLink]="['/activity/details/' + item._id]">
+        <img
+          class="card-img-top"
+          src="{{ item.picture }}"
+          alt="Card image"
+          style="width: 100%"
+        />
+      </a>
       <div class="card-body">
         <h4 class="card-title">{{ item.title }}</h4>
         <h5 class="card-price">CAD{{ item.price }}</h5>

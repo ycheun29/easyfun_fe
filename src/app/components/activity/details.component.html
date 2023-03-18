@@ -1,0 +1,150 @@
+<!-- header -->
+<app-header [title]="title"></app-header>
+
+<!-- Content for the Details page -->
+<div
+  class="banner"
+  style="
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url(assets/banner_activity.jpg);
+  "
+>
+  <h1>{{ item.title }}</h1>
+</div>
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+  <div class="row">
+    <div class="offset-md-2 col-md-4">
+      <img src="{{ item.picture }}" class="details-image" style="width: 100%" />
+    </div>
+    <div class="col-md-6" id="info">
+      <h6 class="category">{{ item.category }}</h6>
+      <h2>{{ item.title }}</h2>
+      <h4 style="color: #bfa3f6">CAD{{ item.price }}</h4>
+      <p style="font-weight: bold">{{ formatDate(item.date) }}</p>
+      <p style="font-weight: bold">
+        {{ formatTime(item.startTime) }} - {{ formatTime(item.endTime) }}
+      </p>
+      <p>{{ item.description }}</p>
+    </div>
+  </div>
+  <br />
+  <br />
+  <br />
+  <br />
+  <div class="row">
+    <div class="offset-md-2 col-md-8">
+      <h4>Comments on the Activity</h4>
+      <div
+        class="table-responsive"
+        *ngIf="commentList.length != 0; else noquestion"
+      >
+        <table
+          class="table table-striped table-hover"
+          *ngFor="let comment of commentList"
+        >
+          <tr>
+            <th style="text-align: left !important">
+              <i class="fa-solid fa-circle-question"></i>
+              <strong>{{ comment.commenter }}:</strong>
+              {{ comment.comment }}
+            </th>
+          </tr>
+          <tr>
+            <td style="text-align: left !important; padding-left: 40px">
+              <strong>Owner's response:</strong> {{ comment.response }}
+            </td>
+          </tr>
+          <ng-template #noresponse>
+            <td style="padding-left: 40px">
+              <form novalidate #form="ngForm">
+                <div class="form-group">
+                  <input type="hidden" name="itemid" [(ngModel)]="item._id" />
+                  <input
+                    type="hidden"
+                    name="commentid"
+                    [(ngModel)]="comment._id"
+                  />
+                  <input
+                    type="hidden"
+                    name="commenter"
+                    [(ngModel)]="comment.commenter"
+                  />
+                  <input
+                    type="hidden"
+                    name="commentcontent"
+                    [(ngModel)]="comment.comment"
+                  />
+                  <label for="responseTextField">Response</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="responseTextField"
+                    placeholder="Enter your response"
+                    name="response"
+                    required
+                  />
+                </div>
+                <div
+                  class="button"
+                  style="text-align: right; margin-bottom: 0px"
+                >
+                  <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-edit"></i>
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </td>
+          </ng-template>
+        </table>
+      </div>
+      <ng-template #noquestion>
+        <p>No comment posted</p>
+        <br />
+        <br />
+      </ng-template>
+    </div>
+  </div>
+  <div class="row">
+    <div class="offset-md-2 col-md-8">
+      <form novalidate #form="ngForm">
+        <div class="form-group">
+          <input type="hidden" name="id" [(ngModel)]="item._id" />
+          <label for="commentTextField"><h4>Leave Comment</h4></label>
+          <input
+            type="text"
+            class="form-control"
+            id="commentTextField"
+            placeholder="Enter your comment"
+            name="comment"
+            [(ngModel)]="comment.comment"
+            required
+          />
+        </div>
+        <br />
+        <br />
+        <div class="button">
+          <button class="btn btn-primary" type="submit">
+            <i class="fas fa-edit"></i>
+            Submit
+          </button>
+          <a
+            href="#"
+            routerLink="#"
+            routerLink="/post/list"
+            class="btn btn-warning"
+          >
+            <i class="fas fa-undo"></i>
+            Cancel
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<app-footer></app-footer>

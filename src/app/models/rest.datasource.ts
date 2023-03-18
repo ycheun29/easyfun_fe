@@ -24,4 +24,12 @@ export class RestDataSource {
         return this.http.get<Activity[]>(this.baseUrl + "activity" );
     }
 
+    // Comment
+    getCommentList(item: Activity): Observable<Comment[]> {
+        return this.http.get<Comment[]>(
+            this.baseUrl+ "activity/details/" + item._id
+        );
+    }
+
+
 }

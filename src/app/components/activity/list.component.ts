@@ -15,7 +15,7 @@ export class ActivityListComponent{
     constructor(private repository: ActivityRepository,
         private router: Router) 
     {
-        repository.getActivityList();
+        repository.setActivityList();
     } 
     
     formatDate(date: Date | undefined): string {
