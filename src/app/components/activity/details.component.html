@@ -29,6 +29,7 @@
         {{ formatTime(item.startTime) }} - {{ formatTime(item.endTime) }}
       </p>
       <p>{{ item.description }}</p>
+      <a (click)="registerParticipant()" class="btn btn-primary">Register</a>
     </div>
   </div>
   <br />

@@ -7,7 +7,7 @@ import { ResponseModel } from "./response.model";
 @Injectable()
 export class CommentRepository {
 
-    private tempCommentList: any[] = [];
+    private tempCommentList: Comment[] = [];
     public listReady: boolean = false;
 
     constructor(private dataSource: RestDataSource) {}
