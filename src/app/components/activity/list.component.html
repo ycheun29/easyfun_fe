@@ -62,24 +62,75 @@
         </button>
         <ul class="dropdown-menu">
           <li>
-            <a class="dropdown-item" value="academic">All</a>
+            <a
+              class="dropdown-item"
+              value="all"
+              (click)="onCategorySelected('all')"
+              >All</a
+            >
           </li>
           <li>
-            <a class="dropdown-item" value="academic">Academic Tutorial</a>
+            <a
+              class="dropdown-item"
+              value="Academic Tutorial"
+              (click)="onCategorySelected('Academic Tutorial')"
+              >Academic Tutorial</a
+            >
           </li>
-          <li><a class="dropdown-item" value="arts">Arts Class</a></li>
           <li>
-            <a class="dropdown-item" value="culinary">Culinary Workshop</a>
+            <a
+              class="dropdown-item"
+              value="Arts Class"
+              (click)="onCategorySelected('Arts Class')"
+              >Arts Class</a
+            >
           </li>
-          <li><a class="dropdown-item" value="fitness">Fitness Course</a></li>
-          <li><a class="dropdown-item" value="music">Music Lesson</a></li>
-          <li><a class="dropdown-item" value="social">Social Event</a></li>
+          <li>
+            <a
+              class="dropdown-item"
+              value="Culinary Workshop"
+              [(ngModel)]="selectedCategory"
+              (click)="onCategorySelected('Culinary Workshop')"
+              >Culinary Workshop</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              value="Fitness Course"
+              (click)="onCategorySelected('Fitness Course')"
+              >Fitness Course</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              value="Music Lesson"
+              (click)="onCategorySelected('Music Lesson')"
+              >Music Lesson</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              value="Social Event"
+              (click)="onCategorySelected('Social Event')"
+              >Social Event</a
+            >
+          </li>
         </ul>
       </div>
     </div>
   </div>
-  <div class="activityList" *ngIf="keyword == ''; else search">
-    <div *ngFor="let item of activityList" class="card" style="width: 350px">
+  <div
+    class="activityList"
+    *ngIf="keyword != '' || selectedCategory != 'all'; else full"
+  >
+    <div
+      *ngFor="let item of filteredActivities"
+      class="card"
+      style="width: 350px"
+    >
       <a href="#" [routerLink]="['/activity/details/' + item._id]">
         <img
           class="card-img-top"
@@ -102,13 +153,9 @@
       </div>
     </div>
   </div>
-  <ng-template #search>
+  <ng-template #full>
     <div class="activityList">
-      <div
-        *ngFor="let item of filteredActivities"
-        class="card"
-        style="width: 350px"
-      >
+      <div *ngFor="let item of activityList" class="card" style="width: 350px">
         <a href="#" [routerLink]="['/activity/details/' + item._id]">
           <img
             class="card-img-top"
