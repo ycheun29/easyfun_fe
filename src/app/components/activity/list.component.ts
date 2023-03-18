@@ -10,14 +10,13 @@ import { ActivityRepository } from "../../models/activity.repository";
 
 export class ActivityListComponent{
 
-    title = 'Explore Activities';    
+    title = 'Explore Activities';
+    filteredActivities: Activity[] = [];
+    keyword = '';
 
-    constructor(private repository: ActivityRepository,
-        private router: Router) 
-    {
-        repository.setActivityList();
-    } 
-    
+    constructor(public repository: ActivityRepository, private router: Router) {
+        this.repository.setActivityList();
+    }
     formatDate(date: Date | undefined): string {
         if (!date) {
           return '';
@@ -26,7 +25,13 @@ export class ActivityListComponent{
     }
 
     get activityList(): Activity[] {
-        return this.repository.getActivityList();        
+        return this.repository.getActivityList();
     }
+
+    searchActivities(): void {
+        this.filteredActivities = this.activityList.filter(item => item.title && item.title.toLowerCase().includes(this.keyword.toLowerCase()));
+        console.log(this.filteredActivities);
+    }
+
 
 }

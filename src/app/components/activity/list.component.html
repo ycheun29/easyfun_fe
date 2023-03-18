@@ -23,6 +23,8 @@
           type="text"
           class="form-control"
           placeholder="Keyword of interested activity"
+          [(ngModel)]="keyword"
+          (input)="searchActivities()"
         />
       </div>
     </div>
@@ -60,6 +62,9 @@
         </button>
         <ul class="dropdown-menu">
           <li>
+            <a class="dropdown-item" value="academic">All</a>
+          </li>
+          <li>
             <a class="dropdown-item" value="academic">Academic Tutorial</a>
           </li>
           <li><a class="dropdown-item" value="arts">Arts Class</a></li>
@@ -73,7 +78,7 @@
       </div>
     </div>
   </div>
-  <div class="activityList">
+  <div class="activityList" *ngIf="keyword == ''; else search">
     <div *ngFor="let item of activityList" class="card" style="width: 350px">
       <a href="#" [routerLink]="['/activity/details/' + item._id]">
         <img
@@ -97,6 +102,36 @@
       </div>
     </div>
   </div>
+  <ng-template #search>
+    <div class="activityList">
+      <div
+        *ngFor="let item of filteredActivities"
+        class="card"
+        style="width: 350px"
+      >
+        <a href="#" [routerLink]="['/activity/details/' + item._id]">
+          <img
+            class="card-img-top"
+            src="{{ item.picture }}"
+            alt="Card image"
+            style="width: 100%"
+          />
+        </a>
+        <div class="card-body">
+          <h4 class="card-title">{{ item.title }}</h4>
+          <h5 class="card-price">CAD{{ item.price }}</h5>
+          <h6 class="card-date">{{ formatDate(item.date) }}</h6>
+          <p class="card-text">{{ item.description }}</p>
+          <a
+            href="#"
+            [routerLink]="['/activity/details/' + item._id]"
+            class="btn btn-primary"
+            >Details</a
+          >
+        </div>
+      </div>
+    </div>
+  </ng-template>
 </main>
 <!-- Footer -->
 <app-footer></app-footer>

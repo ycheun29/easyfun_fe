@@ -7,12 +7,13 @@ import { ResponseModel } from "./response.model";
 export class ActivityRepository {
 
     private tempActivityList: Activity[] = [];
+    public currentDate: Date = new Date();
     public listReady: boolean = false;
 
     constructor(private dataSource: RestDataSource) {}
 
     getActivityList(): Activity[] {
-        return this.tempActivityList;
+        return this.tempActivityList.filter( item => item.status == 'Active').filter( item => item.date && new Date(item.date) >= this.currentDate);
     }
 
     setActivityList(){
@@ -27,4 +28,5 @@ export class ActivityRepository {
     getActivity(id: string): Activity {
         return Object.assign({}, this.tempActivityList.find(i => i._id === id)!);          
     }
+
 }
