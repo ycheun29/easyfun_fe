@@ -16,7 +16,14 @@ export class ActivityListComponent{
         private router: Router) 
     {
         repository.getActivityList();
-    }    
+    } 
+    
+    formatDate(date: Date | undefined): string {
+        if (!date) {
+          return '';
+        }
+        return new Date(date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    }
 
     get activityList(): Activity[] {
         return this.repository.getActivityList();        

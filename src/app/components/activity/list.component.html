@@ -74,108 +74,22 @@
     </div>
   </div>
   <div class="activityList">
-    <div class="card" style="width: 350px">
+    <div *ngFor="let item of activityList" class="card" style="width: 350px">
       <img
         class="card-img-top"
-        src="https://elitemusic.ca/wp-content/themes/twentytwentyone-child/assets/images/drums-at-home.jpg"
+        src="{{ item.picture }}"
         alt="Card image"
         style="width: 100%"
       />
       <div class="card-body">
-        <h4 class="card-title">Drum Lesson (Beginner)</h4>
-        <h5 class="card-price">CAD100</h5>
-        <h6 class="card-date">March 23, 2023</h6>
-        <p class="card-text">Discover your drumming potential</p>
-        <a href="#" routerLink="/activity/details" class="btn btn-primary"
-          >Details</a
-        >
-      </div>
-    </div>
-    <div class="card" style="width: 350px">
-      <img
-        class="card-img-top"
-        src="https://hips.hearstapps.com/hmg-prod/images/make-time-for-it-royalty-free-image-840886802-1538426941.jpg"
-        alt="Card image"
-        style="width: 100%"
-      />
-      <div class="card-body">
-        <h4 class="card-title">Fitness Class</h4>
-        <h5 class="card-price">CAD50</h5>
-        <h6 class="card-date">March 31, 2023</h6>
-        <p class="card-text">
-          Abdominal crunches that train up your core strength
-        </p>
-        <a href="#" routerLink="/activity/details" class="btn btn-primary"
-          >Details</a
-        >
-      </div>
-    </div>
-    <div class="card" style="width: 350px">
-      <img
-        class="card-img-top"
-        src="https://supperclubyvr.com/wp-content/uploads/2021/11/french-course-cooking-adults.jpg"
-        alt="Card image"
-        style="width: 100%"
-      />
-      <div class="card-body">
-        <h4 class="card-title">Thai Cooking Class</h4>
-        <h5 class="card-price">CAD80</h5>
-        <h6 class="card-date">April 1, 2023</h6>
-        <p class="card-text">4-hour cooking and tasting</p>
-        <a href="#" routerLink="/activity/details" class="btn btn-primary"
-          >Details</a
-        >
-      </div>
-    </div>
-    <div class="card" style="width: 350px">
-      <img
-        class="card-img-top"
-        src="https://elitemusic.ca/wp-content/themes/twentytwentyone-child/assets/images/drums-at-home.jpg"
-        alt="Card image"
-        style="width: 100%"
-      />
-      <div class="card-body">
-        <h4 class="card-title">Drum Lesson (Beginner)</h4>
-        <h5 class="card-price">CAD100</h5>
-        <h6 class="card-date">April 4, 2023</h6>
-        <p class="card-text">Discover your drumming potential</p>
-        <a href="#" routerLink="/activity/details" class="btn btn-primary"
-          >Details</a
-        >
-      </div>
-    </div>
-    <div class="card" style="width: 350px">
-      <img
-        class="card-img-top"
-        src="https://hips.hearstapps.com/hmg-prod/images/make-time-for-it-royalty-free-image-840886802-1538426941.jpg"
-        alt="Card image"
-        style="width: 100%"
-      />
-      <div class="card-body">
-        <h4 class="card-title">Fitness Class</h4>
-        <h5 class="card-price">CAD50</h5>
-        <h6 class="card-date">April 12, 2023</h6>
-        <p class="card-text">
-          Abdominal crunches that train up your core strength
-        </p>
-        <a href="#" routerLink="/activity/details" class="btn btn-primary"
-          >Details</a
-        >
-      </div>
-    </div>
-    <div class="card" style="width: 350px">
-      <img
-        class="card-img-top"
-        src="https://supperclubyvr.com/wp-content/uploads/2021/11/french-course-cooking-adults.jpg"
-        alt="Card image"
-        style="width: 100%"
-      />
-      <div class="card-body">
-        <h4 class="card-title">Thai Cooking Class</h4>
-        <h5 class="card-price">CAD80</h5>
-        <h6 class="card-date">April 18, 2023</h6>
-        <p class="card-text">4-hour cooking and tasting</p>
-        <a href="#" routerLink="/activity/details" class="btn btn-primary"
+        <h4 class="card-title">{{ item.title }}</h4>
+        <h5 class="card-price">CAD{{ item.price }}</h5>
+        <h6 class="card-date">{{ formatDate(item.date) }}</h6>
+        <p class="card-text">{{ item.description }}</p>
+        <a
+          href="#"
+          [routerLink]="['/activity/details/' + item._id]"
+          class="btn btn-primary"
           >Details</a
         >
       </div>

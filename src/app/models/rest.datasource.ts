@@ -21,7 +21,7 @@ export class RestDataSource {
     // Activity
     getActivityList(): Observable<Activity[]> {
         //to be updated after updating the backend
-        return this.http.get<Activity[]>(this.baseUrl + "activity/list" );
+        return this.http.get<Activity[]>(this.baseUrl + "activity" );
     }
 
 }
