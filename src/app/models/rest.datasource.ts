@@ -7,6 +7,7 @@ import { Activity } from "./activity.model";
 import { Comment } from "./comment.model";
 import { Participant } from "./participant.model";
 import { ResponseModel } from "./response.model";
+import { User } from "./user.model";
 
 const PROTOCOL = "http";
 const PORT = 3000;
@@ -15,6 +16,7 @@ const PORT = 3000;
 export class RestDataSource {
 
     baseUrl: string;
+    auth_token?: string;
 
     constructor(private http: HttpClient) {        
         this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
@@ -52,6 +54,31 @@ export class RestDataSource {
             return of(error.error);
         }));
     }
+    authenticate(user: string, pass: string): Observable<ResponseModel> {
+        return this.http.post<any>(this.baseUrl + "user/login", 
+        {
+            username: user, 
+            password: pass
+        }).pipe(
+            map(response => {
+                // console.log(response);
+                this.auth_token = response.success ? response.token : null;
+                return response;
+            }),
+            catchError(error => {return of(error.error)})
+        );
+    }
+    signupUser(user: User): Observable<ResponseModel> {
+        return this.http.post<ResponseModel>(
+                this.baseUrl + "user/signup", 
+                user
+            )
+            .pipe(map(response => {
+                return response;
+            }),
+            catchError(error => {return of(error.error)}));
+    }
 
+  
 
 }

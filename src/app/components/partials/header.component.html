@@ -5,17 +5,8 @@
 <div class="logobar">
   <div class="logo"></div>
   <div class="profile">
-    <!-- <a
-        *ngIf="auth.username != null"
-        class="nav-link"
-        routerLink=""
-        (click)="logout()"
-        >LOGOUT ({{ auth.username }})</a
-      >
-      <a *ngIf="auth.username == null" class="nav-link" routerLink="/user/login"
-        >SIGN UP / LOGIN</a
-      > -->
-    <a class="nav-link" href="" routerLink="/user/login">SIGN UP / LOGIN</a>
+    <a *ngIf="auth.username != null" class="nav-link" routerLink="" (click)="logout()">LOGOUT ({{ auth.username }})</a>
+    <a *ngIf="auth.username == null" class="nav-link" routerLink="/user/login">SIGN UP / LOGIN</a>
   </div>
 </div>
 <div class="logobar">

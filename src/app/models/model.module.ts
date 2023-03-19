@@ -5,6 +5,7 @@ import { ActivityRepository } from "./activity.repository";
 import { CommentRepository } from "./comment.repository";
 import { ParticipantRepository } from "./participant.repository";
 import { RestDataSource } from "./rest.datasource";
+import { AuthService } from "./auth.service";
 
 @NgModule({
     imports: [HttpClientModule],
@@ -12,7 +13,8 @@ import { RestDataSource } from "./rest.datasource";
         ActivityRepository,
         CommentRepository,
         ParticipantRepository,
-        RestDataSource
+        RestDataSource,
+        AuthService
     ]
 })
 

@@ -21,7 +21,7 @@
                 <div class="bg-danger mt-2 p-2 text-center text-white" *ngIf="message != null">
                     {{ message }}
                 </div>
-                <form novalidate #form="ngForm">
+                <form novalidate #form="ngForm" (ngSubmit)="authenticate(form)">
                     <div class=" form-group">
                         <label for="usernameTextField">Username</label>
                         <input type="text" class="form-control" id="usernameTextField" placeholder="Enter your username"

@@ -21,9 +21,9 @@
                 <div class="bg-danger mt-2 p-2 text-center text-white" *ngIf="message != null">
                     {{ message }}
                 </div>
-                <form novalidate #form="ngForm">
+                <form novalidate #form="ngForm" (ngSubmit)="signup(form)">
                     <div class="form-group">
-                        <input type="hidden" name="id" />
+                        <input type="hidden" name="id" [(ngModel)]="user._id" />
                         <label for="firstNameTextField">First Name</label>
                         <input type="text" class="form-control" id="firstNameTextField"
                             placeholder="Enter your first name" name="firstName" [(ngModel)]="user.firstName"
