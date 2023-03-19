@@ -1,3 +1,4 @@
+import { formatDate } from "@angular/common";
 import { Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -31,7 +32,6 @@ export class AddEditComponent {
         if (this.editing) {
             this.title = 'Edit An Activity';
             this.item = this.repository.getActivity(activeRoute.snapshot.params["id"]);
-            
         } 
       
     }
@@ -50,4 +50,10 @@ export class AddEditComponent {
         this.router.navigateByUrl("activity/management");
     }
     
+    get localStartTime(){
+        return formatDate(this.item.startTime!, 'medium','en-US','-0000' )
+      }    
+      get localEndTime(){
+        return formatDate(this.item.endTime!, 'medium','en-US','-0000' )
+      }    
 }

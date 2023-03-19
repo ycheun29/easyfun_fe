@@ -52,17 +52,25 @@
                 </div>
                 <br />
                 <br /> -->
+
                 <div class="form-group">
                     <label for="start">Start Time:</label>
-                    <input type="time" id="start Date & Time" name="start Date & Time" [(ngModel)]="item.startTime"
-                        [ngModel]="item.startTime | date : 'yyyy-MM-dd hh:mm a'" required />
+                    <input type="date" id="date" name="date" [(ngModel)]="item.date"
+                        [ngModel]="item.date | date : 'yyyy-MM-dd'" required />
                 </div>
                 <br />
                 <br />
                 <div class="form-group">
+                    <label for="start">Start Time:</label>
+                    <input type="time" id="startTime" name="startTime" [(ngModel)]="item.startTime"
+                        [ngModel]="localStartTime | date : 'HH:mm'" required />
+                </div>
+                <br />
+                <br />
+                <div class=" form-group">
                     <label for="start">End Time:</label>
                     <input type="time" id="endTime" name="endTime" [(ngModel)]="item.endTime"
-                        [ngModel]="item.endTime | date : 'yyyy-MM-dd hh:mm a'" required />
+                        [ngModel]="localEndTime | date : 'HH:mm'" required />
                 </div>
 
 
@@ -73,7 +81,7 @@
                         <i class="fas fa-edit"></i>
                         Submit
                     </button>
-                    <a href="#" routerLink="#" routerLink="/activity/list" class="btn btn-warning">
+                    <a href="#" routerLink="#" routerLink="/activity/management" class="btn btn-warning">
                         <i class="fas fa-undo"></i>
                         Cancel
                     </a>

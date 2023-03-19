@@ -13,10 +13,10 @@ import { ManagementComponent } from './components/activity/management.component'
   imports: [RouterModule.forRoot([
     { path: "", component: IndexComponent },
     { path: "activity/list", component: ActivityListComponent },
+    { path: "activity/details/:id", component: DetailsComponent },
     { path: "activity/management", component: ManagementComponent },
     { path: "activity/:mode", component: AddEditComponent },
     { path: "activity/:mode/:id", component: AddEditComponent },
-    { path: "activity/details/:id", component: DetailsComponent },
     { path: "user/login", component: LoginComponent},
     { path: "user/signup", component: SignupComponent},
     { path: "**", redirectTo: "" },

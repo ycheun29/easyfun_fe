@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
+import { RestDataSource } from "src/app/models/rest.datasource";
+import { User } from "src/app/models/user.model";
 import { Activity, Status } from "../../models/activity.model";
 import { ActivityRepository } from "../../models/activity.repository";
 
@@ -13,6 +15,7 @@ export class ManagementComponent {
     
     title:string = 'Manage my activities';
     filteredActivities: Activity[] = [];
+    user: User = new User();
 
     constructor(private repository: ActivityRepository,
                 private router: Router,
@@ -22,7 +25,8 @@ export class ManagementComponent {
                 }
 
                 get activityList(): Activity[] {
-                    return this.repository.getActivityList();        
+                    return this.repository.getActivityList();
+                  //  return this.repository.getActivityList().filter(activity => activity.owner?._id==this.user._id );        
                 }
             
                 deleteMethod(id: string | undefined) {
@@ -30,18 +34,18 @@ export class ManagementComponent {
                         this.router.navigateByUrl("post/delete/"+id);
                     }
                 }
-                formatDate(date: Date | undefined): string {
-                    if (!date) {
-                      return '';
-                    }
-                    return new Date(date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-                }
+                // formatDate(date: Date | undefined): string {
+                //     if (!date) {
+                //       return '';
+                //     }
+                //     return new Date(date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+                // }
             
-                formatTime(date: Date | undefined): string {
-                    if (!date) {
-                      return '';
-                    }
-                    const torontoTime = new Date(date).getTime() + (4 * 60 * 60 * 1000);
-                    return new Date(torontoTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-                }
+                // formatTime(date: Date | undefined): string {
+                //     if (!date) {
+                //       return '';
+                //     }
+                //     const torontoTime = new Date(date).getTime() + (4 * 60 * 60 * 1000);
+                //     return new Date(torontoTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+                // }
 }
