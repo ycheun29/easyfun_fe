@@ -1,0 +1,86 @@
+<!-- header -->
+<app-header [title]="title"></app-header>
+
+<!-- Content for the Add_Edit page -->
+<div class="banner" style="
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url(assets/banner_activity.jpg);
+  ">
+    <h1>{{ title }}</h1>
+</div>
+<br />
+<br />
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <div class="bg-danger mt-2 p-2 text-center text-white" *ngIf="message != null">
+                {{ message }}
+            </div>
+            <form novalidate #form="ngForm" (ngSubmit)="save(form)">
+                <div class="form-group">
+                    <input type="hidden" name="id" [(ngModel)]="item._id" />
+                    <label for="itemTextField">Activity Title</label>
+                    <input type="text" class="form-control" id="itemTextField"
+                        placeholder="Enter the name of the activity" name="title" [(ngModel)]="item.title" required />
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="QtyTextField">Cover Image (URL)</label>
+                    <input type="text" class="form-control" id="QtyTextField"
+                        placeholder="Enter the URL of activity image" name="picture" [(ngModel)]="item.picture"
+                        required />
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="statusTextField">Price (CAD)</label>
+                    <input type="number" class="form-control" id="statusTextField" placeholder="Enter the price"
+                        name="price" [(ngModel)]="item.price" />
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="statusTextField">Description</label>
+                    <input type="text" class="form-control" id="statusTextField" placeholder="Enter the description"
+                        name="description" [(ngModel)]="item.description" required />
+                </div>
+                <br />
+                <br />
+
+                <!-- <div class="form-group">
+                    <label for="start">Start Date:</label>
+                    <input type="date" id="date" name="date" [(ngModel)]="item.date"
+                        [ngModel]="item.date | date : 'yyyy-MM-dd'" required />
+                </div>
+                <br />
+                <br /> -->
+                <div class="form-group">
+                    <label for="start">Start Time:</label>
+                    <input type="time" id="start Date & Time" name="start Date & Time" [(ngModel)]="item.startTime"
+                        [ngModel]="item.startTime | date : 'yyyy-MM-dd hh:mm a'" required />
+                </div>
+                <br />
+                <br />
+                <div class="form-group">
+                    <label for="start">End Time:</label>
+                    <input type="time" id="endTime" name="endTime" [(ngModel)]="item.endTime"
+                        [ngModel]="item.endTime | date : 'yyyy-MM-dd hh:mm a'" required />
+                </div>
+
+
+                <br />
+                <br />
+                <div class="button">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-edit"></i>
+                        Submit
+                    </button>
+                    <a href="#" routerLink="#" routerLink="/activity/list" class="btn btn-warning">
+                        <i class="fas fa-undo"></i>
+                        Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<app-footer></app-footer>

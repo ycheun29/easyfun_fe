@@ -14,12 +14,48 @@ const PORT = 3000;
 
 @Injectable()
 export class RestDataSource {
+   
 
     baseUrl: string;
     auth_token?: string;
 
     constructor(private http: HttpClient) {        
         this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+    }
+
+    updateActivity(item: Activity): Observable<ResponseModel> {
+        return this.http.put<ResponseModel>(
+                this.baseUrl+ "activity/edit/" + item._id,
+                item
+            )
+            .pipe(map(response => {
+                return response;
+            }),
+            catchError(error => {
+                return of(error.error)
+            }));
+    }
+
+    addActivity(item: Activity) {
+        return this.http.post<Activity>(
+            this.baseUrl + "activity/add",
+            item
+        ).pipe(map(response => {
+            return response;
+        }),
+        catchError(error => {
+            console.log(error.error);
+            return of(error.error);
+        }));
+    }
+    
+    deleteActivity(id: string): Observable<ResponseModel> {
+        return this.http.delete<ResponseModel>(
+            this.baseUrl+ "post/delete/" + id
+            ).pipe(map(response => {
+                return response;
+            }),
+            catchError(error => {return of(error.error)}));
     }
 
     // Activity

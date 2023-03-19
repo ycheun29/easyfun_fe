@@ -2,9 +2,11 @@ import { Injectable } from "@angular/core";
 import { Activity } from "./activity.model";
 import { RestDataSource } from "./rest.datasource";
 import { ResponseModel } from "./response.model";
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class ActivityRepository {
+
 
     private tempActivityList: Activity[] = [];
     public currentDate: Date = new Date();
@@ -29,4 +31,48 @@ export class ActivityRepository {
         return Object.assign({}, this.tempActivityList.find(i => i._id === id)!);          
     }
 
+    async saveActivity(item: Activity) {
+        // If it does not have id, then create a new item.
+        if (item._id == null || item._id == "") {
+            this.dataSource.addActivity(item).subscribe((response) => {
+                    if(response._id) // If API created
+                    {
+                        this.tempActivityList.push(response);
+                    }
+                    else{ // If API send error.
+                        // Convert into ResponseModel to get the error message.
+                        let error = response as ResponseModel;  
+                        alert(`Error: ${error.message}`);
+                    }
+                });
+        } else {
+            // If it has id, then update a existing item.
+            this.dataSource.updateActivity(item).subscribe((resp) => {
+
+                // Convert into ResponseModel to get the error message.
+                let response = resp as ResponseModel;
+                if (response.success == true) {
+                    console.log(`Sucess: ${response.success}`);
+                    this.tempActivityList.splice(this.tempActivityList.
+                        findIndex(i => i._id == item._id), 1, item);
+                }
+                else{
+                    // If API send error.
+                    alert(`Error: ${response.message}`);
+                }        
+            });
+        }
+    }
+
+    deleteActivity(id: string) {
+        this.dataSource.deleteActivity(id).subscribe((response) => {
+            if (response.success) {
+                this.tempActivityList.splice(this.tempActivityList.
+                    findIndex(item => item._id == id), 1);                                
+            }
+            else{
+                alert(`Error: ${response.message}`);
+            }
+        })
+    }
 }

@@ -6,11 +6,13 @@ import { ModelModule } from "../../models/model.module";
 import { PartialsModule } from '../partials/partials.module';
 import { ActivityListComponent } from "./list.component";
 import { DetailsComponent } from "./details.component";
+import { AddEditComponent } from "./add_edit.component";
+import { ManagementComponent } from "./management.component";
 
 @NgModule({
     imports: [ModelModule, BrowserModule, FormsModule, RouterModule, PartialsModule],
-    declarations: [ActivityListComponent, DetailsComponent],
-    exports : [ActivityListComponent, DetailsComponent]
+    declarations: [ActivityListComponent, AddEditComponent, ManagementComponent, DetailsComponent],
+    exports : [ActivityListComponent,AddEditComponent,  ManagementComponent,DetailsComponent]
 })
 
 export class ActivityModule {}
