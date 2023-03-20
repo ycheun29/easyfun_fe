@@ -63,12 +63,6 @@ export class AddEditComponent {
         this.repository.deleteActivity(id);
         this.router.navigateByUrl("activity/management");
     }
-    
-    get getStartTimeString(){
-        return this.item.startTime?.getUTCHours;
-    }    
-    get getEndTimeString(){
-    return this.item.endTime?.getUTCHours;
-    }    
+
 
 }
