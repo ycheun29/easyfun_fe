@@ -16,7 +16,7 @@
             <tr>
                 <th class="text-center">Product Name</th>
                 <th class="text-center">Image</th>
-                <th class="text-center">Price (CAD)</th>
+                <th class="text-center">Status</th>
                 <th class="text-center">Description</th>
                 <th class="text-center" colspan="3">Actions</th>
             </tr>
@@ -29,7 +29,7 @@
                     <img src="{{ item.picture }}" />
                 </td>
                 <td class="text-center">
-                    {{ item.price }}
+                    {{ item.status }}
                 </td>
                 <td class="text-center">
                     {{ item.description }}
@@ -48,7 +48,8 @@
                     </button>
                 </td>
                 <!-- Disable -->
-                <td class="text-center">
+
+                <td class="text-center" *ngIf="item.status !== 'Disable'">
                     <a (click)="deleteMethod(item._id)" class="btn bg-danger btn-danger btn-sm">
                         <i class="fa-solid fa-eye-slash"></i>
                     </a>
