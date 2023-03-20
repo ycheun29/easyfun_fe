@@ -26,7 +26,8 @@ export class RestDataSource {
     updateActivity(item: Activity): Observable<ResponseModel> {
         return this.http.put<ResponseModel>(
                 this.baseUrl+ "activity/edit/" + item._id,
-                item
+                item,
+                this.provideToken()
             )
             .pipe(map(response => {
                 return response;
@@ -39,7 +40,8 @@ export class RestDataSource {
     addActivity(item: Activity) {
         return this.http.post<Activity>(
             this.baseUrl + "activity/add",
-            item
+            item,
+            this.provideToken()
         ).pipe(map(response => {
             return response;
         }),
@@ -50,8 +52,9 @@ export class RestDataSource {
     }
     
     deleteActivity(id: string): Observable<ResponseModel> {
-        return this.http.delete<ResponseModel>(
-            this.baseUrl+ "post/delete/" + id
+        return this.http.put<ResponseModel>(
+            this.baseUrl+ "activity/delete/" + id,
+            this.provideToken()
             ).pipe(map(response => {
                 return response;
             }),
@@ -64,6 +67,11 @@ export class RestDataSource {
         return this.http.get<Activity[]>(this.baseUrl + "activity" );
     }
 
+    getActivityManagementList(): Observable<Activity[]> {
+        //to be updated after updating the backend
+        return this.http.get<Activity[]>(this.baseUrl + "activity/activityManagement",this.provideToken());
+    }
+
     // Comment
     getCommentList(item: Activity): Observable<Comment[]> {
         return this.http.get<Comment[]>(
@@ -74,7 +82,8 @@ export class RestDataSource {
     // Participant
     getParticipantList(item: Participant): Observable<Participant[]> {
         return this.http.get<Participant[]>(
-            this.baseUrl+ "participant/"
+            this.baseUrl+ "participant/",
+            this.provideToken()
         );
     }
 
@@ -115,6 +124,14 @@ export class RestDataSource {
             catchError(error => {return of(error.error)}));
     }
 
-  
+    private provideToken() {
+        return {
+            headers: new HttpHeaders(
+                {
+                    "Authorization": `Bearer ${this.auth_token}`
+                }
+            )
+        }
+    }
 
 }

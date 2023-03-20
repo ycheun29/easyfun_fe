@@ -45,32 +45,26 @@
                 <br />
                 <br />
 
-                <!-- <div class="form-group">
-                    <label for="start">Start Date:</label>
+                <div class="form-group">
+                    <label for="date">Date:</label>
                     <input type="date" id="date" name="date" [(ngModel)]="item.date"
                         [ngModel]="item.date | date : 'yyyy-MM-dd'" required />
                 </div>
                 <br />
-                <br /> -->
+                <br />
+
 
                 <div class="form-group">
                     <label for="start">Start Time:</label>
-                    <input type="date" id="date" name="date" [(ngModel)]="item.date"
-                        [ngModel]="item.date | date : 'yyyy-MM-dd'" required />
-                </div>
-                <br />
-                <br />
-                <div class="form-group">
-                    <label for="start">Start Time:</label>
-                    <input type="time" id="startTime" name="startTime" [(ngModel)]="item.startTime"
-                        [ngModel]="localStartTime | date : 'HH:mm'" required />
+                    <input type="time" id="startTime" name="startTime" [(ngModel)]="startTimeString"
+                        [ngModel]="item.startTime | date: 'HH:mm':'+0000'" required />
                 </div>
                 <br />
                 <br />
                 <div class=" form-group">
-                    <label for="start">End Time:</label>
-                    <input type="time" id="endTime" name="endTime" [(ngModel)]="item.endTime"
-                        [ngModel]="localEndTime | date : 'HH:mm'" required />
+                    <label for="end">End Time:</label>
+                    <input type="time" id="endTime" name="endTime" [(ngModel)]="endTimeString"
+                        [ngModel]="item.endTime| date: 'HH:mm':'+0000'" required />
                 </div>
 
 

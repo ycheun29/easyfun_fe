@@ -21,17 +21,17 @@ export class ManagementComponent {
                 private router: Router,
                 activeRoute: ActivatedRoute) 
                 {
-                    repository.setActivityList();
+                    repository.setActivityManagementList();
                 }
 
-                get activityList(): Activity[] {
-                    return this.repository.getActivityList();
-                  //  return this.repository.getActivityList().filter(activity => activity.owner?._id==this.user._id );        
-                }
+                get activityManagementList(): Activity[] {
+                    return this.repository.getActivityManagementList();
+                   }
             
                 deleteMethod(id: string | undefined) {
-                    if(confirm("Are you sure to disable the post?")) {
-                        this.router.navigateByUrl("post/delete/"+id);
+                    if(confirm("Are you sure to delete the post?")) {
+                        // this.repository.deleteActivity(id!);
+                        this.router.navigateByUrl("activity/delete/"+id);
                     }
                 }
                 // formatDate(date: Date | undefined): string {

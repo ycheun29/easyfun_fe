@@ -16,6 +16,8 @@ export class AddEditComponent {
     title:string = 'Create an Activity';
     item: Activity = new Activity();
     public message?: string;
+    startTimeString!: string;
+    endTimeString!: string;
 
     constructor(private repository: ActivityRepository,
                 private router: Router,
@@ -37,6 +39,18 @@ export class AddEditComponent {
     }
 
     save(form: NgForm) {
+        this.item.startTime = new Date();
+        this.item.endTime = new Date();
+        console.log(this.startTimeString);
+        console.log(this.endTimeString);
+        const [startHours, startMinutes] = this.startTimeString.split(':');
+        this.item.startTime.setUTCHours(parseInt(startHours, 10));
+        this.item.startTime.setUTCMinutes(parseInt(startMinutes, 10));
+        const [endHours, endMinutes] = this.endTimeString.split(':');
+        this.item.endTime.setUTCHours(parseInt(endHours, 10));
+        this.item.endTime.setUTCMinutes(parseInt(endMinutes, 10));
+        console.log(this.item.startTime);
+        console.log(this.item.endTime);
         if (form.valid) {
             this.repository.saveActivity(this.item);
             this.router.navigateByUrl("activity/management"); 
@@ -50,10 +64,11 @@ export class AddEditComponent {
         this.router.navigateByUrl("activity/management");
     }
     
-    get localStartTime(){
-        return formatDate(this.item.startTime!, 'medium','en-US','-0000' )
-      }    
-      get localEndTime(){
-        return formatDate(this.item.endTime!, 'medium','en-US','-0000' )
-      }    
+    get getStartTimeString(){
+        return this.item.startTime?.getUTCHours;
+    }    
+    get getEndTimeString(){
+    return this.item.endTime?.getUTCHours;
+    }    
+
 }

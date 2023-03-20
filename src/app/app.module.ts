@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { IndexModule } from './components/index.module';
 import { ActivityModule } from "./components/activity/activity.module";
 import { UserModule } from './components/user/user.module';
+import { AuthGuard } from './components/user/auth.gard';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { UserModule } from './components/user/user.module';
     AppRoutingModule,
     UserModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

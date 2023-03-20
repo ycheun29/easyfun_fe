@@ -8,6 +8,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class ActivityRepository {
 
 
+
     private tempActivityList: Activity[] = [];
     public currentDate: Date = new Date();
     public listReady: boolean = false;
@@ -18,6 +19,18 @@ export class ActivityRepository {
         return this.tempActivityList.filter( item => item.status == 'Active').filter( item => item.date && new Date(item.date) >= this.currentDate);
     }
 
+
+    getActivityManagementList(): Activity[] {
+        return this.tempActivityList;
+    }
+    setActivityManagementList() {
+        this.listReady = false;
+        // Use subscribe to get data when it is ready
+        this.dataSource.getActivityManagementList().subscribe(data => {
+            this.tempActivityList = data;
+            this.listReady = true;
+        });
+    }
     setActivityList(){
         this.listReady = false;
         // Use subscribe to get data when it is ready
