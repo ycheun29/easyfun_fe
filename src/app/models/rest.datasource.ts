@@ -90,7 +90,8 @@ export class RestDataSource {
     registerParticipant(participant: Participant): Observable<Participant> {
         return this.http.post<Participant>(
             this.baseUrl + "participant/add",
-            participant
+            participant,
+            this.provideToken()
         ).pipe(map(response => {
             return response;
         }),

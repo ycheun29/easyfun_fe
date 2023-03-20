@@ -26,6 +26,10 @@ export class ParticipantRepository {
     }
 
     async addParticipant(participant: Participant) {
+        const body = {
+            activity: participant.activity,
+            participant: participant.participant
+        };
         this.dataSource.registerParticipant(participant)
             .subscribe(response => {
                 if(response._id) // If API created
