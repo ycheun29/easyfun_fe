@@ -80,9 +80,9 @@ export class RestDataSource {
     }
 
     // Participant
-    getParticipantList(item: Participant): Observable<Participant[]> {
+    getParticipantList(id: String): Observable<Participant[]> {
         return this.http.get<Participant[]>(
-            this.baseUrl+ "participant/",
+            this.baseUrl+ "participant/?activity=" + id,
             this.provideToken()
         );
     }

@@ -9,11 +9,13 @@ import { SignupComponent } from './components/user/signup.component';
 import { AddEditComponent } from './components/activity/add_edit.component';
 import { ManagementComponent } from './components/activity/management.component';
 import { AuthGuard } from './components/user/auth.gard';
+import { ParticipantsComponent } from './components/activity/participants.component';
 
 @NgModule({
   imports: [RouterModule.forRoot([
     { path: "", component: IndexComponent },
     { path: "activity/list", component: ActivityListComponent },
+    { path: "activity/participants/:id", component: ParticipantsComponent, canActivate: [AuthGuard] },
     { path: "activity/details/:id", component: DetailsComponent },
     { path: "activity/management", component: ManagementComponent , canActivate: [AuthGuard]},
     { path: "activity/:mode", component: AddEditComponent , canActivate: [AuthGuard]},

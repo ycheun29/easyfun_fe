@@ -3,29 +3,28 @@ import { Activity } from "./activity.model";
 import { Participant } from "./participant.model";
 import { RestDataSource } from "./rest.datasource";
 import { ResponseModel } from "./response.model";
+import { User } from "./user.model";
 
 @Injectable()
 export class ParticipantRepository {
-
     private tempParticipantList: Participant[] = [];
-    public listReady: boolean = false;
 
     constructor(private dataSource: RestDataSource) {}
 
-    getParticipantList(item: Activity): Participant[] {
-        return this.tempParticipantList;
-    }
+    // getParticipantList(id: String): Participant[] {
+    //     return this.tempParticipantList;
+    // }
 
-    setParticipantList(item: Activity){
-        this.listReady = false;
+    setParticipantList(id: String){
+        // this.listReady = false;
         // Use subscribe to get data when it is ready
-        this.dataSource.getParticipantList(item).subscribe(data => {
-            this.tempParticipantList = data;
-            this.listReady = true;
-        });
+        // this.dataSource.getParticipantList(id).subscribe(data => {
+        //     this.tempParticipantList = data;
+        //     this.listReady = true;
+        // });
     }
 
-    async addParticipant(participant: Participant) {
+     addParticipant(participant: Participant) {
         const body = {
             activity: participant.activity,
             participant: participant.participant

@@ -14,7 +14,6 @@ import { ActivityRepository } from "../../models/activity.repository";
 export class ManagementComponent {
     
     title:string = 'Manage my activities';
-    filteredActivities: Activity[] = [];
     user: User = new User();
 
     constructor(private repository: ActivityRepository,
@@ -29,7 +28,7 @@ export class ManagementComponent {
                    }
             
                 deleteMethod(id: string | undefined) {
-                    if(confirm("Are you sure to delete the post?")) {
+                    if(confirm("Are you sure to disable this activity?")) {
                         // this.repository.deleteActivity(id!);
                         this.router.navigateByUrl("activity/delete/"+id);
                     }
