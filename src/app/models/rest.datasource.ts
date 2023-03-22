@@ -88,7 +88,7 @@ export class RestDataSource {
         );
     }
 
-    registerParticipant(participant: Participant): Observable<Participant> {
+    registerParticipant(participant: Participant){
         return this.http.post<Participant>(
             this.baseUrl + "participant/add",
             participant,

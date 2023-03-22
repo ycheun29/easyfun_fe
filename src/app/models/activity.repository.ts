@@ -52,7 +52,7 @@ export class ActivityRepository {
                     {
                         let success = response as ResponseModel;  
                         this.tempActivityList.push(response);
-                        alert(success.message);
+                        alert(response.message);
                     }
                     else{ // If API send error.
                         // Convert into ResponseModel to get the error message.
@@ -71,7 +71,8 @@ export class ActivityRepository {
                 }
                 else{
                     // If API send error.
-                    alert(`Error: ${response.message}`);
+                    let error = response as ResponseModel;  
+                    alert(`Error: ${error.message}`);
                 }        
             });
         }
@@ -80,12 +81,13 @@ export class ActivityRepository {
     deleteActivity(id: string) {
         this.dataSource.deleteActivity(id).subscribe((response) => {
             if (response.success) {
-                alert(response.message);
                 this.tempActivityList.splice(this.tempActivityList.
-                    findIndex(item => item._id == id), 1);                                
+                    findIndex(item => item._id == id), 1);    
+                alert(response.message);                            
             }
             else{
-                alert(`Error: ${response.message}`);
+                let error = response as ResponseModel;  
+                alert(`Error: ${error.message}`);
             }
         })
     }
