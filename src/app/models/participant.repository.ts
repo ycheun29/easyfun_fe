@@ -31,8 +31,10 @@ export class ParticipantRepository {
         };
         this.dataSource.registerParticipant(participant)
             .subscribe(response => {
-                if(response._id) // If API created
+                if(response.success) // If API created
                 {
+                    console.log(`Success: ${response.success}`);
+                    alert(response.message);
                     this.tempParticipantList.push(response);
                 }
                 else{ // If API send error.

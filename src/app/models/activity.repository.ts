@@ -48,9 +48,11 @@ export class ActivityRepository {
         // If it does not have id, then create a new item.
         if (item._id == null || item._id == "") {
             this.dataSource.addActivity(item).subscribe((response) => {
-                    if(response._id) // If API created
+                    if(response.success) // If API created
                     {
                         this.tempActivityList.push(response);
+                        alert(response.message);
+                        console.log(`Success: ${response.success}`);
                     }
                     else{ // If API send error.
                         // Convert into ResponseModel to get the error message.
@@ -64,14 +66,16 @@ export class ActivityRepository {
 
                 // Convert into ResponseModel to get the error message.
                 let response = resp as ResponseModel;
-                if (response.success == true) {
-                    console.log(`Sucess: ${response.success}`);
+                if (response.success) {
+                    console.log(`Success: ${response.success}`);
+                    alert(response.message);
                     this.tempActivityList.splice(this.tempActivityList.
                         findIndex(i => i._id == item._id), 1, item);
                 }
                 else{
                     // If API send error.
-                    alert(`Error: ${response.message}`);
+                    let error = response as ResponseModel;  
+                    alert(`Error: ${error.message}`);
                 }        
             });
         }
@@ -84,7 +88,8 @@ export class ActivityRepository {
                     findIndex(item => item._id == id), 1);                                
             }
             else{
-                alert(`Error: ${response.message}`);
+                let error = response as ResponseModel;  
+                alert(`Error: ${error.message}`);
             }
         })
     }

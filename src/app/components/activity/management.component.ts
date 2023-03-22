@@ -13,7 +13,7 @@ import { ActivityRepository } from "../../models/activity.repository";
 
 export class ManagementComponent {
     
-    title:string = 'Manage my activities';
+    title:string = 'Activity Management';
     user: User = new User();
 
     constructor(private repository: ActivityRepository,
