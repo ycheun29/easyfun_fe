@@ -19,34 +19,47 @@
             <form novalidate #form="ngForm" (ngSubmit)="save(form)">
                 <div class="form-group">
                     <input type="hidden" name="id" [(ngModel)]="item._id" />
-                    <label for="itemTextField">Activity Title</label>
+                    <label for="activityTitleTxtField">Activity Title</label>
                     <input type="text" class="form-control" id="itemTextField"
                         placeholder="Enter the name of the activity" name="title" [(ngModel)]="item.title" required />
                 </div>
                 <br />
                 <div class="form-group">
-                    <label for="QtyTextField">Cover Image (URL)</label>
+                    <label for="imageUrlTxtField">Cover Image (URL)</label>
                     <input type="text" class="form-control" id="QtyTextField"
                         placeholder="Enter the URL of activity image" name="picture" [(ngModel)]="item.picture"
                         required />
                 </div>
                 <br />
                 <div class="form-group">
-                    <label for="statusTextField">Price (CAD)</label>
+                    <label for="priceTextField">Price (CAD)</label>
                     <input type="number" class="form-control" id="statusTextField" placeholder="Enter the price"
                         name="price" [(ngModel)]="item.price" />
                 </div>
                 <br />
                 <div class="form-group">
-                    <label for="statusTextField">Description</label>
+                    <label for="descTextField">Description</label>
                     <input type="text" class="form-control" id="statusTextField" placeholder="Enter the description"
                         name="description" [(ngModel)]="item.description" required />
                 </div>
                 <br />
                 <br />
-
                 <div class="form-group">
-                    <label for="date">Date:</label>
+                    <label for="categoryDropdownField">Category</label>
+                    <select id="category" name="category" class="category" [(ngModel)]="item.category" required>
+                        <option></option>
+                        <option value="Academic Tutorial">Academic Tutorial</option>
+                        <option value="Art Class">Art Class</option>
+                        <option value="Culinary Workshop">Culinary Workshop</option>
+                        <option value="Fitness Course">Fitness Course</option>
+                        <option value="Music Lesson">Music Lesson</option>
+                        <option value="Social Event">Social Event</option>
+                    </select>
+                </div>
+                <br />
+                <br />
+                <div class="form-group">
+                    <label for="dateField">Date</label>
                     <input type="date" id="date" name="date" [(ngModel)]="item.date"
                         [ngModel]="item.date | date : 'yyyy-MM-dd'" required />
                 </div>
@@ -55,20 +68,18 @@
 
 
                 <div class="form-group">
-                    <label for="start">Start Time:</label>
+                    <label for="startTimeField">Start Time</label>
                     <input type="time" id="startTime" name="startTime" [(ngModel)]="startTimeString"
                         [ngModel]="item.startTime | date: 'HH:mm':'+0000'" required />
                 </div>
                 <br />
                 <br />
                 <div class="form-group">
-                    <label for="end">End Time:</label>
+                    <label for="endTimeField">End Time</label>
                     <input type="time" id="endTime" name="endTime" [(ngModel)]="endTimeString"
                         [ngModel]="item.endTime| date: 'HH:mm':'+0000'" (blur)="checkEndTime()" required />
                 </div>
                 <p *ngIf="isEndTimeInvalid" style="color: red;">End time cannot be earlier than start time</p>
-
-
                 <br />
                 <br />
                 <div class="button">
