@@ -29,22 +29,7 @@ export class ManagementComponent {
             
                 deleteMethod(id: string | undefined) {
                     if(confirm("Are you sure to disable this activity?")) {
-                        // this.repository.deleteActivity(id!);
                         this.router.navigateByUrl("activity/delete/"+id);
                     }
                 }
-                // formatDate(date: Date | undefined): string {
-                //     if (!date) {
-                //       return '';
-                //     }
-                //     return new Date(date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-                // }
-            
-                // formatTime(date: Date | undefined): string {
-                //     if (!date) {
-                //       return '';
-                //     }
-                //     const torontoTime = new Date(date).getTime() + (4 * 60 * 60 * 1000);
-                //     return new Date(torontoTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-                // }
 }

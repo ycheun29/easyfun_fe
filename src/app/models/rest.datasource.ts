@@ -54,6 +54,7 @@ export class RestDataSource {
     deleteActivity(id: string): Observable<ResponseModel> {
         return this.http.put<ResponseModel>(
             this.baseUrl+ "activity/delete/" + id,
+            id,
             this.provideToken()
             ).pipe(map(response => {
                 return response;

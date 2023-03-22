@@ -48,26 +48,26 @@ export class ActivityRepository {
         // If it does not have id, then create a new item.
         if (item._id == null || item._id == "") {
             this.dataSource.addActivity(item).subscribe((response) => {
-                    if(response._id) // If API created
+                    if(response.success) // If API created
                     {
+                        let success = response as ResponseModel;  
                         this.tempActivityList.push(response);
+                        alert(success.message);
                     }
                     else{ // If API send error.
                         // Convert into ResponseModel to get the error message.
-                        let error = response as ResponseModel;  
-                        alert(`Error: ${error.message}`);
+                        alert(`Error: ${response.message}`);
                     }
                 });
         } else {
             // If it has id, then update a existing item.
-            this.dataSource.updateActivity(item).subscribe((resp) => {
+            this.dataSource.updateActivity(item).subscribe((response) => {
 
                 // Convert into ResponseModel to get the error message.
-                let response = resp as ResponseModel;
-                if (response.success == true) {
-                    console.log(`Sucess: ${response.success}`);
+                if (response.success) {
                     this.tempActivityList.splice(this.tempActivityList.
                         findIndex(i => i._id == item._id), 1, item);
+                        alert(`${response.message}`);
                 }
                 else{
                     // If API send error.
@@ -80,6 +80,7 @@ export class ActivityRepository {
     deleteActivity(id: string) {
         this.dataSource.deleteActivity(id).subscribe((response) => {
             if (response.success) {
+                alert(response.message);
                 this.tempActivityList.splice(this.tempActivityList.
                     findIndex(item => item._id == id), 1);                                
             }
