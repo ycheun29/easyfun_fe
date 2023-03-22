@@ -1,0 +1,209 @@
+<!-- header -->
+<app-header [title]="title"></app-header>
+
+<!-- Main Content -->
+<div
+  class="banner"
+  style="
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url(assets/banner_activity.jpg);
+  "
+>
+  <h1>{{ title }}</h1>
+</div>
+<main class="container">
+  <div
+    id="toolbar"
+    class="row height d-flex justify-content-center align-items-center"
+  >
+    <div class="col-md-7">
+      <div class="search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Keyword of interested activity"
+          [(ngModel)]="keyword"
+          (input)="searchActivities()"
+        />
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="dropdown">
+        <button
+          type="button"
+          class="btn btn-primary dropdown-toggle"
+          data-bs-toggle="dropdown"
+        >
+          Sort By
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a
+              class="dropdown-item"
+              value="dateAsc"
+              (click)="onSortSelected('dateAsc')"
+              >Date (Ascending)</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              value="dateDes"
+              (click)="onSortSelected('dateDes')"
+              >Date (Descending)</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              value="priceAsc"
+              (click)="onSortSelected('priceAsc')"
+              >Price (Ascending)</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              value="priceDes"
+              (click)="onSortSelected('priceDes')"
+              >Price (Descending)</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="dropdown">
+        <button
+          type="button"
+          class="btn btn-primary dropdown-toggle"
+          data-bs-toggle="dropdown"
+        >
+          Filter By Category
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a
+              class="dropdown-item"
+              value="all"
+              (click)="onCategorySelected('all')"
+              >All</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              value="Academic Tutorial"
+              (click)="onCategorySelected('Academic Tutorial')"
+              >Academic Tutorial</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              value="Arts Class"
+              (click)="onCategorySelected('Arts Class')"
+              >Arts Class</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              value="Culinary Workshop"
+              [(ngModel)]="selectedCategory"
+              (click)="onCategorySelected('Culinary Workshop')"
+              >Culinary Workshop</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              value="Fitness Course"
+              (click)="onCategorySelected('Fitness Course')"
+              >Fitness Course</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              value="Music Lesson"
+              (click)="onCategorySelected('Music Lesson')"
+              >Music Lesson</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              value="Social Event"
+              (click)="onCategorySelected('Social Event')"
+              >Social Event</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div
+    class="activityList"
+    *ngIf="
+      keyword != '' || selectedCategory != 'all' || selectedSort != 'dateAsc';
+      else full
+    "
+  >
+    <div
+      *ngFor="let item of filteredActivities"
+      class="card"
+      style="width: 350px"
+    >
+      <a href="#" [routerLink]="['/activity/details/' + item._id]">
+        <img
+          class="card-img-top"
+          src="{{ item.picture }}"
+          alt="Card image"
+          style="width: 100%"
+        />
+      </a>
+      <div class="card-body">
+        <h4 class="card-title">{{ item.title }}</h4>
+        <h5 class="card-price">CAD{{ item.price }}</h5>
+        <h6 class="card-date">{{ formatDate(item.date) }}</h6>
+        <p class="card-text">{{ item.description }}</p>
+        <a
+          href="#"
+          [routerLink]="['/activity/details/' + item._id]"
+          class="btn btn-primary"
+          >Details</a
+        >
+      </div>
+    </div>
+  </div>
+  <ng-template #full>
+    <div class="activityList">
+      <div *ngFor="let item of activityList" class="card" style="width: 350px">
+        <a href="#" [routerLink]="['/activity/details/' + item._id]">
+          <img
+            class="card-img-top"
+            src="{{ item.picture }}"
+            alt="Card image"
+            style="width: 100%"
+          />
+        </a>
+        <div class="card-body">
+          <h4 class="card-title">{{ item.title }}</h4>
+          <h5 class="card-price">CAD{{ item.price }}</h5>
+          <h6 class="card-date">{{ formatDate(item.date) }}</h6>
+          <p class="card-text">{{ item.description }}</p>
+          <a
+            href="#"
+            [routerLink]="['/activity/details/' + item._id]"
+            class="btn btn-primary"
+            >Details</a
+          >
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</main>
+<!-- Footer -->
+<app-footer></app-footer>

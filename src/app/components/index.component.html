@@ -1,0 +1,41 @@
+<!-- header -->
+<app-header [title]="title"></app-header>
+
+<!-- Main Content -->
+<div class="banner" style="
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url(../../assets/banner.jpg);
+  ">
+  <h1>easyFun</h1>
+</div>
+<main>
+  <div class="intro">
+    A platform that designed for activity hosts and passionate activity seekers.
+    Create and explore interesting and creative activities online.
+  </div>
+  <div class="thumbnail">
+    <div class="card" style="width: 400px">
+      <img class="card-img-top" src="../../assets/join.jpg" alt="Card image" style="width: 100%" />
+      <div class="card-body">
+        <h4 class="card-title">Join An Activity</h4>
+        <p class="card-text">
+          Discover all the amazing activities that you may be interested in
+        </p>
+        <a href="#" routerLink="/activity/list" class="btn btn-primary">Explore Now</a>
+      </div>
+    </div>
+    <div class="card" style="width: 400px">
+      <img class="card-img-top" src="../../assets/create.jpg" alt="Card image" style="width: 100%" />
+      <div class="card-body">
+        <h4 class="card-title">Host An Activity</h4>
+        <p class="card-text">
+          Put your incredible activity here to attract more like-minded people
+          to join
+        </p>
+        <a href="#" routerLink="/activity/management" class="btn btn-primary">Create Now</a>
+      </div>
+    </div>
+  </div>
+</main>
+<!-- Footer -->
+<app-footer></app-footer>
