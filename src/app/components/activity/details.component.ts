@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
-import { Router, ActivatedRoute, ActivatedRouteSnapshot } from "@angular/router";
+import { NgForm } from "@angular/forms";
+import { Router, ActivatedRoute } from "@angular/router";
 import { User } from "../../models/user.model";
 import { Activity, Status } from "../../models/activity.model";
 import { Comment } from "../../models/comment.model";
@@ -7,8 +8,6 @@ import { Participant } from "../../models/participant.model";
 import { ActivityRepository } from "../../models/activity.repository";
 import { CommentRepository } from "../../models/comment.repository";
 import { ParticipantRepository } from "../../models/participant.repository";
-import { AuthService } from "src/app/models/auth.service";
-import { AuthGuard } from "../user/auth.gard";
 
 @Component({
     selector: "activity-details",
@@ -27,8 +26,6 @@ export class DetailsComponent {
                 private commentRepository: CommentRepository,
                 private participantRepository: ParticipantRepository,
                 private router: Router,
-                private authService: AuthService,
-                private authGuard: AuthGuard,
                 activeRoute: ActivatedRoute) 
     { 
         this.item = this.activityRepository.getActivity(activeRoute.snapshot.params["id"]);
@@ -55,15 +52,10 @@ export class DetailsComponent {
     }
 
     registerParticipant() {
-        if (this.authService.authenticated) {
-            if (confirm("Are you sure to register the event?")) {
-                this.participant.activity = this.item!;
-                this.participantRepository.addParticipant(this.participant);
-            }
-        } else {
-            this.authGuard.canActivate(new ActivatedRouteSnapshot(), this.router.routerState.snapshot);
+        if(confirm("Are you sure to register the event?")) {
+            this.participant.activity = this.item!;
+            this.participantRepository.addParticipant(this.participant);
         }
     }
-    
 
 }
