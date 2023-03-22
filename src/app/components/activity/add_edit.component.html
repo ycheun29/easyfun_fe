@@ -64,14 +64,15 @@
                 <div class="form-group">
                     <label for="end">End Time:</label>
                     <input type="time" id="endTime" name="endTime" [(ngModel)]="endTimeString"
-                        [ngModel]="item.endTime| date: 'HH:mm':'+0000'" required />
+                        [ngModel]="item.endTime| date: 'HH:mm':'+0000'" (blur)="checkEndTime()" required />
                 </div>
+                <p *ngIf="isEndTimeInvalid" style="color: red;">End time cannot be earlier than start time</p>
 
 
                 <br />
                 <br />
                 <div class="button">
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary" type="submit" [disabled]="isEndTimeInvalid">
                         <i class="fas fa-edit"></i>
                         Submit
                     </button>
