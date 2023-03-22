@@ -29,7 +29,19 @@
         {{ formatTime(item.startTime) }} - {{ formatTime(item.endTime) }}
       </p>
       <p>{{ item.description }}</p>
-      <a (click)="registerParticipant()" class="btn btn-primary">Register</a>
+      <a
+        *ngIf="auth.username != null"
+        (click)="registerParticipant()"
+        class="btn btn-primary"
+        >Register</a
+      >
+      <a
+        *ngIf="auth.username == null"
+        href="#"
+        routerLink="/user/login"
+        class="btn btn-primary"
+        >Register</a
+      >
     </div>
   </div>
   <br />

@@ -8,6 +8,7 @@ import { Participant } from "../../models/participant.model";
 import { ActivityRepository } from "../../models/activity.repository";
 import { CommentRepository } from "../../models/comment.repository";
 import { ParticipantRepository } from "../../models/participant.repository";
+import { AuthService } from "src/app/models/auth.service";
 
 @Component({
     selector: "activity-details",
@@ -26,7 +27,8 @@ export class DetailsComponent {
                 private commentRepository: CommentRepository,
                 private participantRepository: ParticipantRepository,
                 private router: Router,
-                activeRoute: ActivatedRoute) 
+                activeRoute: ActivatedRoute,
+                public auth: AuthService) 
     { 
         this.item = this.activityRepository.getActivity(activeRoute.snapshot.params["id"]);
         commentRepository.setCommentList(this.item);
