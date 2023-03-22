@@ -75,7 +75,7 @@ export class RestDataSource {
     // Comment
     getCommentList(item: Activity): Observable<Comment[]> {
         return this.http.get<Comment[]>(
-            this.baseUrl+ "activity/details/" + item._id
+            this.baseUrl+ "comment"
         );
     }
 
@@ -100,6 +100,7 @@ export class RestDataSource {
             return of(error.error);
         }));
     }
+
     authenticate(user: string, pass: string): Observable<ResponseModel> {
         return this.http.post<any>(this.baseUrl + "user/login", 
         {
@@ -114,6 +115,7 @@ export class RestDataSource {
             catchError(error => {return of(error.error)})
         );
     }
+    
     signupUser(user: User): Observable<ResponseModel> {
         return this.http.post<ResponseModel>(
                 this.baseUrl + "user/signup", 

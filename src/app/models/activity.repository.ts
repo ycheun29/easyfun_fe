@@ -19,10 +19,10 @@ export class ActivityRepository {
         return this.tempActivityList.filter( item => item.status == 'Active').filter( item => item.date && new Date(item.date) >= this.currentDate);
     }
 
-
     getActivityManagementList(): Activity[] {
         return this.tempActivityList;
     }
+    
     setActivityManagementList() {
         this.listReady = false;
         // Use subscribe to get data when it is ready

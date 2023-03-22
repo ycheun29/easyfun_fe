@@ -55,6 +55,7 @@ export class DetailsComponent {
         if(confirm("Are you sure to register the event?")) {
             this.participant.activity!._id = this.item._id;
             this.participant.participant!._id = this.user._id;
+            console.log(this.participant);
 
             this.participantRepository.addParticipant(this.participant);
         }

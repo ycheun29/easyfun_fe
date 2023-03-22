@@ -28,7 +28,20 @@ export class ActivityListComponent{
     }
 
     get activityList(): Activity[] {
-        return this.repository.getActivityList();
+        return this.repository.getActivityList().sort((a, b) => {
+          const aDate = a.date ? new Date(a.date) : undefined;
+          const bDate = b.date ? new Date(b.date) : undefined;
+          
+          if (aDate && bDate) {
+            return aDate.getTime() - bDate.getTime();
+          } else if (bDate) {
+            return -1;
+          } else if (aDate) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });;
     }
 
     searchActivities(): void {
