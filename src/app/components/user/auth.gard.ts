@@ -13,12 +13,12 @@ export class AuthGuard {
         private auth: AuthService) { }
 
     canActivate(route: ActivatedRouteSnapshot,
-                state: RouterStateSnapshot): boolean 
+                state: RouterStateSnapshot): boolean | null
     {
         if (!this.auth.authenticated) {
             this.auth.redirectUrl = state.url;
             this.router.navigateByUrl("/user/login");
-            return false;
+            return null;
         }
         return true;
     }
