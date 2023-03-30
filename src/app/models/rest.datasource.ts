@@ -80,6 +80,33 @@ export class RestDataSource {
         );
     }
 
+    insertComment(comment: Comment): Observable<Comment> {
+        return this.http.post<Comment>(
+            this.baseUrl + "comment/add",
+            comment
+        ).pipe(map(response => {
+            return response;
+        }),
+        catchError(error => {
+            console.log(error.error);
+            return of(error.error);
+        }));
+    }
+
+    insertResponse(comment: Comment): Observable<Comment> {
+        return this.http.put<ResponseModel>(
+                this.baseUrl+ "comment/edit/" + comment._id,
+                comment,
+                this.provideToken()
+            )
+            .pipe(map(response => {
+                return response;
+            }),
+            catchError(error => {
+                return of(error.error)
+            }));
+    }
+
     // Participant
     getParticipantList(id: String): Observable<Participant[]> {
         return this.http.get<Participant[]>(

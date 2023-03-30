@@ -104,7 +104,6 @@ export class ActivityListComponent{
                     break;    
         }
         this.cdRef.detectChanges();
-        console.log(this.filteredActivities);
     }
 
     onCategorySelected(category: string): void {
