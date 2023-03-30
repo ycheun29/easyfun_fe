@@ -9,7 +9,9 @@ import { AppComponent } from './app.component';
 import { IndexModule } from './components/index.module';
 import { ActivityModule } from "./components/activity/activity.module";
 import { UserModule } from './components/user/user.module';
-import { AuthGuard } from './components/user/auth.gard';
+import { AdminModule } from "./components/admin/admin.module";
+import { AuthGuard } from './components/user/auth.guard';
+import { AdminGuard } from './components/user/admin.guard';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,10 @@ import { AuthGuard } from './components/user/auth.gard';
     IndexModule,
     ActivityModule,
     AppRoutingModule,
-    UserModule
+    UserModule,
+    AdminModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, AdminGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

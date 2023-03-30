@@ -6,7 +6,7 @@ export class User {
         public lastName?: String,
         public email?: String,
         public username?: string,
-        public password?: string
-
+        public password?: string,
+        public admin?: boolean
     ){}
 }

@@ -28,9 +28,9 @@ export class AuthService {
         return this.datasource.signupUser(user);
     }
 
-    // getUser(){
-    //     return this.datasource.getUserList();
-    // }
+    getUser(){
+        return this.datasource.getUserList();
+    }
 
     get authenticated(): boolean {
         return this.datasource.auth_token != undefined;

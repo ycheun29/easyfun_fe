@@ -102,6 +102,7 @@ export class RestDataSource {
         }));
     }
 
+    // User
     authenticate(user: string, pass: string): Observable<ResponseModel> {
         return this.http.post<any>(this.baseUrl + "user/login", 
         {
@@ -126,6 +127,31 @@ export class RestDataSource {
                 return response;
             }),
             catchError(error => {return of(error.error)}));
+    }
+
+    
+    getUserList(): Observable<User> {
+        return this.http.get<User>(
+            this.baseUrl + "user/profile",
+            this.provideToken()
+        ).pipe(map(response => {
+            return response;
+        }),
+        catchError(error => {return of(error.error)}));
+    }
+
+    updateUser(item: User): Observable<ResponseModel> {
+        return this.http.post<ResponseModel>(
+                this.baseUrl+ "user/profile",
+                item,
+                this.provideToken()
+            )
+            .pipe(map(response => {
+                return response;
+            }),
+            catchError(error => {
+                return of(error.error)
+            }));
     }
 
     private provideToken() {

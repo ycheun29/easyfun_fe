@@ -8,7 +8,7 @@ import { LoginComponent } from"./login.component";
 import { RouterModule } from "@angular/router";
 
 @NgModule({
-    imports: [ModelModule, BrowserModule, FormsModule, PartialsModule,RouterModule],
+    imports: [ModelModule, BrowserModule, FormsModule, PartialsModule, RouterModule],
     declarations: [ SignupComponent, LoginComponent],
     exports : [SignupComponent, LoginComponent]
 })
