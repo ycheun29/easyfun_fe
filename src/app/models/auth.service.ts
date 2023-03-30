@@ -29,7 +29,7 @@ export class AuthService {
     }
 
     getUser(){
-        return this.datasource.getUserList();
+        return this.datasource.getUserProfile();
     }
 
     get authenticated(): boolean {

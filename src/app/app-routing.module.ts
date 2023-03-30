@@ -12,6 +12,7 @@ import { AuthGuard } from './components/user/auth.guard';
 import { AdminGuard } from './components/user/admin.guard';
 import { DashboardComponent } from './components/admin/dashboard.component';
 import { ParticipantsComponent } from './components/activity/participants.component';
+import { ProfileComponent } from './components/user/profile.component';
 
 @NgModule({
   imports: [RouterModule.forRoot([
@@ -22,6 +23,7 @@ import { ParticipantsComponent } from './components/activity/participants.compon
     { path: "activity/management", component: ManagementComponent , canActivate: [AuthGuard]},
     { path: "activity/:mode", component: AddEditComponent , canActivate: [AuthGuard]},
     { path: "activity/:mode/:id", component: AddEditComponent , canActivate: [AuthGuard]},
+    { path: "user/profile", component: ProfileComponent, canActivate: [AuthGuard]},
     { path: "user/login", component: LoginComponent},
     { path: "user/signup", component: SignupComponent},
     { path: "admin/dashboard", component: DashboardComponent , canActivate: [AdminGuard]},

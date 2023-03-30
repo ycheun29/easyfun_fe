@@ -156,7 +156,7 @@ export class RestDataSource {
             catchError(error => {return of(error.error)}));
     }
 
-    getUserList(): Observable<User> {
+    getUserProfile(): Observable<User> {
         return this.http.get<User>(
             this.baseUrl + "user/profile",
             this.provideToken()
@@ -167,9 +167,8 @@ export class RestDataSource {
     }
 
     updateUser(item: User): Observable<ResponseModel> {
-        return this.http.post<ResponseModel>(
-                this.baseUrl+ "user/profile",
-                item,
+        return this.http.post<User>(
+                this.baseUrl+ "user/profile/edit/",
                 this.provideToken()
             )
             .pipe(map(response => {
@@ -179,6 +178,7 @@ export class RestDataSource {
                 return of(error.error)
             }));
     }
+
 
     private provideToken() {
         return {
