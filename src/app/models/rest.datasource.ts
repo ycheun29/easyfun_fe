@@ -156,7 +156,6 @@ export class RestDataSource {
             catchError(error => {return of(error.error)}));
     }
 
-    
     getUserList(): Observable<User> {
         return this.http.get<User>(
             this.baseUrl + "user/profile",
@@ -189,6 +188,30 @@ export class RestDataSource {
                 }
             )
         }
+    }
+
+    // For Admin
+    getUsers(): Observable<User[]> {
+        return this.http.get<User[]>(
+            this.baseUrl + "user"
+        );
+    }
+
+    getActivities(): Observable<Activity[]> {
+        return this.http.get<Activity[]>(
+            this.baseUrl + "activity"
+        );
+    }
+
+    getComments(): Observable<Comment[]> {
+        return this.http.get<Comment[]>(
+            this.baseUrl+ "comment"
+        );
+    }
+    getParticipants(): Observable<Participant[]> {
+        return this.http.get<Participant[]>(
+            this.baseUrl+ "participant"
+        );
     }
 
 }
