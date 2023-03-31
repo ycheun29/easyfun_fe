@@ -193,7 +193,8 @@ export class RestDataSource {
     // For Admin
     getUsers(): Observable<User[]> {
         return this.http.get<User[]>(
-            this.baseUrl + "user"
+            this.baseUrl + "user",
+            this.provideToken()
         );
     }
 
