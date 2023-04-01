@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { EmailValidator, NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/models/auth.service';
 import { RestDataSource } from 'src/app/models/rest.datasource';
 import { User } from 'src/app/models/user.model';
 
@@ -14,27 +15,34 @@ import { User } from 'src/app/models/user.model';
     public user: User = new User();
     public message?: string;
 
-  
 
     constructor(
         public dataSource: RestDataSource,
-        private activeRoute: ActivatedRoute
-    ) {}
+        private activeRoute: ActivatedRoute,
+        private router: Router,
+        private auth: AuthService)
+        { 
+            this.auth.getUser()
+            .subscribe((response: User) => {
+                this.user = response;
+            });
+        }
 
-    getProfile(): void {
-        this.dataSource.getUserProfile().subscribe({
-            next: (data) => {
-                this.user = data;
-            },
-            error: (e) => console.error(e)}
-        );
-    }
 
     updateProfile(form: NgForm) {
         if (form.valid) {
-
-               
-        } else {
+            this.dataSource.updateUser(this.user).subscribe((response) => {
+                if (response.success) {
+                        alert(`${response.message}`);
+                }
+                else{
+                    alert(`Error: ${response.message}`);
+                }     
+            }
+            );
+            this.router.navigateByUrl("profile");
+        } 
+        else {
             this.message = "All the fields are required";
         }
     }
