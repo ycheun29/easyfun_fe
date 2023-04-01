@@ -17,27 +17,16 @@
                 <th class="text-center">Last Name</th>
                 <th class="text-center">Email</th>
             </tr>
-            <!-- <tr *ngFor="let item of user">
-            
+            <tr *ngFor="let item of users">
+
                 <td class="text-center">
-                    {{ item.firstName}}
+                    {{item.firstName}}
                 </td>
                 <td class="text-center">
-                    {{ item.lastName }}
+                    {{item.lastName}}
                 </td>
                 <td class="text-center">
-                    {{ item.email }}
-                </td>
-            </tr> -->
-            <tr>
-                <td class="text-center">
-                    {{participants[0].participant?.firstName}}
-                </td>
-                <td class="text-center">
-                    {{participants[0].participant?.lastName}}
-                </td>
-                <td class="text-center">
-                    {{participants[0].participant?.email}}
+                    {{item.email}}
                 </td>
 
             </tr>

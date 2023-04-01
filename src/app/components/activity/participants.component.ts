@@ -2,6 +2,7 @@ import { Component, OnInit} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Participant } from "src/app/models/participant.model";
 import { RestDataSource } from "../../models/rest.datasource";
+import { User } from "src/app/models/user.model";
 
 @Component({
     selector: "participants",
@@ -10,6 +11,7 @@ import { RestDataSource } from "../../models/rest.datasource";
 export class ParticipantsComponent implements OnInit {
     title = 'Participants List';
     participants: Participant[] = [];
+    users: User[] = [];
 
     constructor(
         public dataSource: RestDataSource,
@@ -24,6 +26,8 @@ export class ParticipantsComponent implements OnInit {
         this.dataSource.getParticipantList(id).subscribe({
             next: (data) => {
                 this.participants = data;
+                this.participants.forEach(participant =>this.users.push(participant.participant!))
+    
             },
             error: (e) => console.error(e)}
         );
