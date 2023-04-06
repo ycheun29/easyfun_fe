@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/models/auth.service';
+import { map } from "rxjs/operators";
 
 @Component({
   selector: 'login',
@@ -22,7 +23,16 @@ authenticate(form: NgForm) {
         this.auth.authenticate(this.username, this.password)
             .subscribe(response => {
                 if (response.success) {
-                    this.router.navigateByUrl(this.auth.redirectUrl || "");
+                    this.auth.getUser().pipe(
+                        map(response => response.admin || false)
+                      ).subscribe(isAdmin => {
+                        if (isAdmin) {
+                          this.router.navigateByUrl("/admin/dashboard");
+                        }
+                        else{
+                            this.router.navigateByUrl(this.auth.redirectUrl || "");
+                        }
+                      });
                 }
                 this.message = response.message;
             });

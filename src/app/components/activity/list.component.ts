@@ -16,6 +16,7 @@ export class ActivityListComponent{
     keyword = '';
     selectedCategory = 'all';
     selectedSort = 'dateAsc';
+    public currentDate: Date = new Date();
 
     constructor(public repository: ActivityRepository, private router: Router, private cdRef: ChangeDetectorRef) {
         this.repository.setActivityList();
@@ -28,7 +29,7 @@ export class ActivityListComponent{
     }
 
     get activityList(): Activity[] {
-        return this.repository.getActivityList().sort((a, b) => {
+        return this.repository.getActivityList().filter( item => item.status == 'Active').filter( item => item.date && new Date(item.date) >= this.currentDate).sort((a, b) => {
           const aDate = a.date ? new Date(a.date) : undefined;
           const bDate = b.date ? new Date(b.date) : undefined;
           
@@ -104,7 +105,6 @@ export class ActivityListComponent{
                     break;    
         }
         this.cdRef.detectChanges();
-        console.log(this.filteredActivities);
     }
 
     onCategorySelected(category: string): void {

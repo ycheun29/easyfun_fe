@@ -7,16 +7,13 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class ActivityRepository {
 
-
-
     private tempActivityList: Activity[] = [];
-    public currentDate: Date = new Date();
     public listReady: boolean = false;
 
     constructor(private dataSource: RestDataSource) {}
 
     getActivityList(): Activity[] {
-        return this.tempActivityList.filter( item => item.status == 'Active').filter( item => item.date && new Date(item.date) >= this.currentDate);
+        return this.tempActivityList;
     }
 
     getActivityManagementList(): Activity[] {

@@ -66,14 +66,17 @@
               {{ comment.comment }}
             </th>
           </tr>
-          <tr>
+          <tr *ngIf="comment.response != null; else middletemp">
             <td style="text-align: left !important; padding-left: 40px">
               <strong>Owner's response:</strong> {{ comment.response }}
             </td>
           </tr>
+          <ng-template #middletemp
+            ><a *ngIf="item.owner?._id !== user._id; else noresponse"></a
+          ></ng-template>
           <ng-template #noresponse>
             <td style="padding-left: 40px">
-              <form novalidate #form="ngForm">
+              <form novalidate #form="ngForm" (ngSubmit)="postResponse($event)">
                 <div class="form-group">
                   <input type="hidden" name="itemid" [(ngModel)]="item._id" />
                   <input
@@ -124,7 +127,7 @@
   </div>
   <div class="row">
     <div class="offset-md-2 col-md-8">
-      <form novalidate #form="ngForm">
+      <form novalidate #form="ngForm" (ngSubmit)="postComment(form)">
         <div class="form-group">
           <input type="hidden" name="id" [(ngModel)]="item._id" />
           <label for="commentTextField"><h4>Leave Comment</h4></label>

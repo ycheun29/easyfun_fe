@@ -294,3 +294,27 @@ footer.bg-light.text-center.text-lg-start.rounded {
   text-transform: uppercase;
   color: #fd7f32;
 }
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  grid-auto-flow: dense;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 50px 0px;
+  align-items: center;
+  justify-items: center;
+}
+
+.dashboard div.card {
+  --bs-card-border-width: 1px;
+}
+
+.dashboard div.card-body {
+  padding: 80px;
+} 
+
+.dashboard div.card-body p {
+  font-size: 250%;
+  font-weight: bold;
+  margin-top: 20px;
+} 

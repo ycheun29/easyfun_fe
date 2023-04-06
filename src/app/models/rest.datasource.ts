@@ -80,6 +80,33 @@ export class RestDataSource {
         );
     }
 
+    insertComment(comment: Comment): Observable<Comment> {
+        return this.http.post<Comment>(
+            this.baseUrl + "comment/add",
+            comment
+        ).pipe(map(response => {
+            return response;
+        }),
+        catchError(error => {
+            console.log(error.error);
+            return of(error.error);
+        }));
+    }
+
+    insertResponse(comment: Comment): Observable<Comment> {
+        return this.http.put<ResponseModel>(
+                this.baseUrl+ "comment/edit/" + comment._id,
+                comment,
+                this.provideToken()
+            )
+            .pipe(map(response => {
+                return response;
+            }),
+            catchError(error => {
+                return of(error.error)
+            }));
+    }
+
     // Participant
     getParticipantList(id: String): Observable<Participant[]> {
         return this.http.get<Participant[]>(
@@ -102,6 +129,7 @@ export class RestDataSource {
         }));
     }
 
+    // User
     authenticate(user: string, pass: string): Observable<ResponseModel> {
         return this.http.post<any>(this.baseUrl + "user/login", 
         {
@@ -128,6 +156,31 @@ export class RestDataSource {
             catchError(error => {return of(error.error)}));
     }
 
+    getUserProfile(): Observable<User> {
+        return this.http.get<User>(
+            this.baseUrl + "user/profile",
+            this.provideToken()
+        ).pipe(map(response => {
+            return response;
+        }),
+        catchError(error => {return of(error.error)}));
+    }
+
+    updateUser(user: User): Observable<ResponseModel> {
+        return this.http.post<User>(
+                this.baseUrl+ "user/profile",
+                user,
+                this.provideToken()
+            )
+            .pipe(map(response => {
+                return response;
+            }),
+            catchError(error => {
+                return of(error.error)
+            }));
+    }
+
+
     private provideToken() {
         return {
             headers: new HttpHeaders(
@@ -136,6 +189,31 @@ export class RestDataSource {
                 }
             )
         }
+    }
+
+    // For Admin
+    getUsers(): Observable<User[]> {
+        return this.http.get<User[]>(
+            this.baseUrl + "user",
+            this.provideToken()
+        );
+    }
+
+    getActivities(): Observable<Activity[]> {
+        return this.http.get<Activity[]>(
+            this.baseUrl + "activity"
+        );
+    }
+
+    getComments(): Observable<Comment[]> {
+        return this.http.get<Comment[]>(
+            this.baseUrl+ "comment"
+        );
+    }
+    getParticipants(): Observable<Participant[]> {
+        return this.http.get<Participant[]>(
+            this.baseUrl+ "participant"
+        );
     }
 
 }

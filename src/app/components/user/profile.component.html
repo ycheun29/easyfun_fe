@@ -1,0 +1,63 @@
+<!-- header -->
+<app-header [title]="title"></app-header>
+
+<!-- Content for the Signup Login page -->
+<div class="banner" style="
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url(assets/banner_user.jpg);
+  ">
+  <h1>{{ title }}</h1>
+</div>
+<br />
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="offset-md-3 col-md-6">
+        <div class="bg-danger mt-2 p-2 text-center text-white" *ngIf="message != null">
+          {{ message }}
+        </div>
+        <form novalidate #form="ngForm" (ngSubmit)="updateProfile(form)">
+          <div class="form-group">
+            <input type="hidden" name="id" [(ngModel)]="user._id" />
+            <label for="firstNameTextField">First Name</label>
+            <input type="text" class="form-control" id="firstNameTextField" placeholder="Change your first name"
+              name="firstName" [(ngModel)]="user.firstName" required />
+          </div>
+          <br />
+          <div class="form-group">
+            <label for="lastNameTextField">Last Name</label>
+            <input type="text" class="form-control" id="lastNameTextField" placeholder="Change your last name"
+              name="lastName" [(ngModel)]="user.lastName" required />
+          </div>
+          <br />
+          <div class="form-group">
+            <label for="emailTextField">Email Address</label>
+            <input type="email" class="form-control" id="emailTextField" placeholder="Change your email address"
+              name="email" [(ngModel)]="user.email" required />
+          </div>
+          <br />
+          <div class="form-group">
+            <label for="usernameTextField">Username</label>
+            <input type="text" class="form-control" id="usernameTextField" placeholder="Change your username"
+              name="username" [(ngModel)]="user.username" required />
+          </div>
+          <br />
+
+          <br />
+          <div class="button">
+            <button class="btn btn-primary" type="submit">
+              <i class="fas fa-edit"></i>
+              Submit
+            </button>
+            <a href="#" routerLink="/" class="btn btn-warning">
+              <i class="fas fa-undo"></i>
+              Cancel
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+<!-- Footer -->
+<app-footer></app-footer>

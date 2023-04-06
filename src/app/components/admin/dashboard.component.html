@@ -1,0 +1,43 @@
+<!-- header -->
+<admin-header [title]="title"></admin-header>
+
+<!-- Main Content -->
+<div
+  class="banner"
+  style="
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url(../../assets/join.jpg);
+  "
+>
+  <h1>Dashboard</h1>
+</div>
+<main>
+  <div class="dashboard">
+    <div class="card" style="width: 600px">
+      <div class="card-body">
+        <h4 class="card-title">Number Of Users Signned Up</h4>
+        <p class="card-text">{{ users }}</p>
+      </div>
+    </div>
+    <div class="card" style="width: 600px">
+      <div class="card-body">
+        <h4 class="card-title">Number Of Activities Created</h4>
+        <p class="card-text">{{ activities }}</p>
+      </div>
+    </div>
+    <div class="card" style="width: 600px">
+      <div class="card-body">
+        <h4 class="card-title">Number Of Comments Posted</h4>
+        <p class="card-text">{{ comments }}</p>
+      </div>
+    </div>
+    <div class="card" style="width: 600px">
+      <div class="card-body">
+        <h4 class="card-title">Number Of Participants Registered</h4>
+        <p class="card-text">{{ participants }}</p>
+      </div>
+    </div>
+  </div>
+</main>
+<!-- Footer -->
+<app-footer></app-footer>

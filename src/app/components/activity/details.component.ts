@@ -32,6 +32,11 @@ export class DetailsComponent {
     { 
         this.item = this.activityRepository.getActivity(activeRoute.snapshot.params["id"]);
         commentRepository.setCommentList(this.item);
+        
+        this.auth.getUser()
+        .subscribe(response => {
+            this.user = response;
+        });
     }
 
     formatDate(date: Date | undefined): string {
@@ -49,10 +54,41 @@ export class DetailsComponent {
         return new Date(torontoTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
     }
 
+    // Comment
     get commentList(): Comment[] {
         return this.commentRepository.getCommentList(this.item);        
     }
 
+    postComment(event: any) {
+        if (event.valid){
+            this.comment.activity = this.item._id;
+
+            // Check if user is logged in
+            if (this.user._id){
+                this.comment.commenter = this.user.firstName + " " + this.user.lastName;
+            }else{
+                this.comment.commenter = "Anonymous User";
+            }
+    
+            this.commentRepository.postComment(this.comment);
+            this.router.navigateByUrl("activity/details/" + this.item._id);   
+            event.target.question.value = "";
+        }else{
+            alert("Please fill in a comment");
+        }
+    }
+
+    postResponse(event: any) {
+        this.comment._id = event.target.commentid.value;
+        this.comment.activity = this.item._id;
+        this.comment.commenter = event.target.commenter.value;
+        this.comment.comment = event.target.commentcontent.value;
+        this.comment.response = event.target.response.value;
+        this.commentRepository.postResponse(this.comment);
+        this.router.navigateByUrl("activity/details/" + this.item._id);             
+    }
+
+    // Participant
     registerParticipant() {
         if(confirm("Are you sure to register the event?")) {
             this.participant.activity = this.item!;
